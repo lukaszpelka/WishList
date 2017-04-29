@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wishes>
+	<wish>
+		<name>zyczenie1</name>
+		<description>opis zyczenia</description>
+		<priority>5</priority>
+		<price>123.456</price>
+		<addedTime>2017-04-25, 14:47</addedTime>
+	</wish>
+	<wish>
+		<name>zyczenie2</name>
+		<description>opis zyczenia2</description>
+		<priority>7</priority>
+		<price>12.23</price>
+		<addedTime>2017-04-20, 12:12</addedTime>
+	</wish>
+</wishes>

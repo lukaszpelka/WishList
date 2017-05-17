@@ -35,10 +35,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.opisRichTextBox = new System.Windows.Forms.RichTextBox();
             this.wyczyscButton = new System.Windows.Forms.Button();
-            this.priorytetTextBox = new System.Windows.Forms.TextBox();
             this.trescTextBox = new System.Windows.Forms.TextBox();
             this.cenaTextBox = new System.Windows.Forms.TextBox();
             this.errorLabel = new System.Windows.Forms.Label();
+            this.numericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.closeButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // dodajButton
@@ -105,14 +107,6 @@
             this.wyczyscButton.UseVisualStyleBackColor = true;
             this.wyczyscButton.Click += new System.EventHandler(this.wyczyscButton_Click);
             // 
-            // priorytetTextBox
-            // 
-            this.priorytetTextBox.Location = new System.Drawing.Point(111, 38);
-            this.priorytetTextBox.MaxLength = 2;
-            this.priorytetTextBox.Name = "priorytetTextBox";
-            this.priorytetTextBox.Size = new System.Drawing.Size(255, 20);
-            this.priorytetTextBox.TabIndex = 2;
-            // 
             // trescTextBox
             // 
             this.trescTextBox.Location = new System.Drawing.Point(111, 12);
@@ -136,15 +130,43 @@
             this.errorLabel.TabIndex = 11;
             this.errorLabel.Text = "label5";
             // 
+            // numericUpDown
+            // 
+            this.numericUpDown.Location = new System.Drawing.Point(111, 38);
+            this.numericUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown.Name = "numericUpDown";
+            this.numericUpDown.Size = new System.Drawing.Size(255, 20);
+            this.numericUpDown.TabIndex = 12;
+            this.numericUpDown.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // closeButton
+            // 
+            this.closeButton.Location = new System.Drawing.Point(291, 255);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
+            this.closeButton.TabIndex = 13;
+            this.closeButton.Text = "Zamknij";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(378, 331);
+            this.Controls.Add(this.closeButton);
+            this.Controls.Add(this.numericUpDown);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.cenaTextBox);
             this.Controls.Add(this.trescTextBox);
-            this.Controls.Add(this.priorytetTextBox);
             this.Controls.Add(this.wyczyscButton);
             this.Controls.Add(this.opisRichTextBox);
             this.Controls.Add(this.label4);
@@ -154,6 +176,7 @@
             this.Controls.Add(this.dodajButton);
             this.Name = "Form3";
             this.Text = "Form3";
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -168,9 +191,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox opisRichTextBox;
         private System.Windows.Forms.Button wyczyscButton;
-        private System.Windows.Forms.TextBox priorytetTextBox;
         private System.Windows.Forms.TextBox trescTextBox;
         private System.Windows.Forms.TextBox cenaTextBox;
         private System.Windows.Forms.Label errorLabel;
+        private System.Windows.Forms.NumericUpDown numericUpDown;
+        private System.Windows.Forms.Button closeButton;
     }
 }

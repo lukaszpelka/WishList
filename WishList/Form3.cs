@@ -36,11 +36,6 @@ namespace WishList
                 errorLabel.Visible = true;
                 errorLabel.Text += "treść.";
             }
-            else if (!int.TryParse(priorytetTextBox.Text, out priority) || priorytetTextBox.Text == string.Empty)
-            {
-                errorLabel.Visible = true;
-                errorLabel.Text += "priorytet.";
-            }
             else if ((!double.TryParse(cenaTextBox.Text, System.Globalization.NumberStyles.Any, CultureInfo.CurrentCulture, out price) &&
                     !double.TryParse(cenaTextBox.Text, System.Globalization.NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out price) &&
                     !double.TryParse(cenaTextBox.Text, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out price)) || cenaTextBox.Text == string.Empty)
@@ -53,50 +48,66 @@ namespace WishList
                 errorLabel.Visible = false;
                 name = trescTextBox.Text;
                 description = opisRichTextBox.Text;
-            }     
-            Wish tempwish = new Wish(name, description, priority, price, DateTime.Now);
-            //this.Close();
-            System.Xml.XmlDocument rssDoc = new System.Xml.XmlDocument();
-            rssDoc.Load("Wishes.xml");
-            XmlNode node = rssDoc.CreateNode(XmlNodeType.Element, "wish", null);
-            XmlNode nodeTresc = rssDoc.CreateElement("name");
-            nodeTresc.InnerText = tempwish.Name;
-            node.AppendChild(nodeTresc);
-            rssDoc.DocumentElement.AppendChild(node);
+                priority = Convert.ToInt32(numericUpDown.Value);
 
-            XmlNode nodeCena = rssDoc.CreateElement("description");
-            nodeTresc.InnerText = tempwish.Description;
-            node.AppendChild(nodeCena);
-            rssDoc.DocumentElement.AppendChild(node);
+                Wish tempwish = new Wish(name, description, priority, price, DateTime.Now);
 
-            XmlNode nodePriorytet = rssDoc.CreateElement("priority");
-            nodeTresc.InnerText = tempwish.Priority.ToString();
-            node.AppendChild(nodePriorytet);
-            rssDoc.DocumentElement.AppendChild(node);
+                System.Xml.XmlDocument rssDoc = new System.Xml.XmlDocument();
+                rssDoc.Load("Wishes.xml");
+                XmlNode node = rssDoc.CreateNode(XmlNodeType.Element, "wish", null);
 
-            XmlNode nodeOpis = rssDoc.CreateElement("price");
-            nodeTresc.InnerText = tempwish.Price.ToString();
-            node.AppendChild(nodeOpis);
-            rssDoc.DocumentElement.AppendChild(node);
+                XmlNode nodeTresc = rssDoc.CreateElement("name");
+                nodeTresc.InnerText = tempwish.Name;
+                node.AppendChild(nodeTresc);
+                rssDoc.DocumentElement.AppendChild(node);
 
-            XmlNode nodeData = rssDoc.CreateElement("addedTime");
-            nodeTresc.InnerText = tempwish.AddedTime.ToString("yyyy-MM-dd, HH:mm");
-            node.AppendChild(nodeData);
-            rssDoc.DocumentElement.AppendChild(node);
+                XmlNode nodeCena = rssDoc.CreateElement("description");
+                nodeCena.InnerText = tempwish.Description;
+                node.AppendChild(nodeCena);
+                rssDoc.DocumentElement.AppendChild(node);
 
-            rssDoc.Save("rss.xml");
+                XmlNode nodePriorytet = rssDoc.CreateElement("priority");
+                nodePriorytet.InnerText = tempwish.Priority.ToString();
+                node.AppendChild(nodePriorytet);
+                rssDoc.DocumentElement.AppendChild(node);
 
+                XmlNode nodeOpis = rssDoc.CreateElement("price");
+                nodeOpis.InnerText = tempwish.Price.ToString();
+                node.AppendChild(nodeOpis);
+                rssDoc.DocumentElement.AppendChild(node);
 
+                XmlNode nodeData = rssDoc.CreateElement("addedTime");
+                nodeData.InnerText = tempwish.AddedTime.ToString("yyyy-MM-dd, HH:mm");
+                node.AppendChild(nodeData);
+                rssDoc.DocumentElement.AppendChild(node);
+
+                rssDoc.Save("rss.xml");
+
+                //Form1 f = new Form1();
+                //f.LoadListView();
+
+                this.Close();
+            }
         }
 
         private void wyczyscButton_Click(object sender, EventArgs e)
         {
             trescTextBox.Text = string.Empty;
             cenaTextBox.Text = string.Empty;
-            priorytetTextBox.Text = string.Empty;
+            numericUpDown.Value = 5;
             opisRichTextBox.Text = string.Empty;
             errorLabel.Visible = false;
             errorLabel.Text = "Wystąpił błąd w polu ";
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Czy na pewno chcesz zamknąć bez zapisywania?", "Wish List", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
+
         }
     }
 }

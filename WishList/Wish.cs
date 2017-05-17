@@ -38,15 +38,21 @@ namespace WishList
         {
             List<Wish> tempWishList = new List<Wish>();
             System.Xml.XmlDocument rssDoc = new System.Xml.XmlDocument();
-            rssDoc.Load("Wishes.xml");
+            //rssDoc.Load("Wishes.xml");
+            //tymczasowo
+            rssDoc.Load("rss.xml");
             System.Xml.XmlNodeList rssItems = rssDoc.SelectNodes("wishes/wish");
-            System.Xml.XmlNode rssNode;
+
+
             
-            Wish tempWish = new Wish();
-            int index = 0;
-            foreach (var wish in rssItems)
+            //int index = 0;
+            for (int i = 0; i < rssItems.Count; i++)
             {
-                rssNode = rssItems.Item(index).SelectSingleNode("name");
+                int indeks = i;
+                System.Xml.XmlNode rssNode;
+                Wish tempWish = new Wish();
+
+                rssNode = rssItems.Item(indeks).SelectSingleNode("name");
                 if (rssNode != null)
                 {
                     tempWish.Name = rssNode.InnerText;
@@ -56,7 +62,7 @@ namespace WishList
                     tempWish.Name = string.Empty;
                 }
 
-                rssNode = rssItems.Item(index).SelectSingleNode("description");
+                rssNode = rssItems.Item(indeks).SelectSingleNode("description");
                 if (rssNode != null)
                 {
                     tempWish.Description = rssNode.InnerText;
@@ -66,7 +72,7 @@ namespace WishList
                     tempWish.Description = string.Empty;
                 }
 
-                rssNode = rssItems.Item(index).SelectSingleNode("priority");
+                rssNode = rssItems.Item(indeks).SelectSingleNode("priority");
                 if (rssNode != null)
                 {
                     if (!int.TryParse(rssNode.InnerText, out tempWish.Priority))
@@ -77,7 +83,7 @@ namespace WishList
                     tempWish.Priority = 0;
                 }
 
-                rssNode = rssItems.Item(index).SelectSingleNode("price");
+                rssNode = rssItems.Item(indeks).SelectSingleNode("price");
                 if (rssNode != null)
                 {
                     if (!double.TryParse(rssNode.InnerText, System.Globalization.NumberStyles.Any, CultureInfo.CurrentCulture, out tempWish.Price) &&
@@ -90,7 +96,7 @@ namespace WishList
                     tempWish.Price = 0.0;
                 }
 
-                rssNode = rssItems.Item(index).SelectSingleNode("addedTime");
+                rssNode = rssItems.Item(indeks).SelectSingleNode("addedTime");
                 if (rssNode != null)
                 {
                     DateTime.TryParseExact(rssNode.InnerText, tempWish.DatePattern, null, DateTimeStyles.None, out tempWish.AddedTime);
@@ -99,7 +105,7 @@ namespace WishList
                 {
                     DateTime.TryParseExact("1980-01-01, 00:00", tempWish.DatePattern, null, DateTimeStyles.None, out tempWish.AddedTime);
                 }
-                index++;
+                indeks++;
                 tempWishList.Add(tempWish);
             }
             return tempWishList;

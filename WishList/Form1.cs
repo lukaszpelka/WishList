@@ -19,7 +19,7 @@ namespace WishList
             LoadListView();
         }
 
-        private void LoadListView()
+        public void LoadListView()
         {
             listView1.Bounds = new Rectangle(new Point(10, 10), new Size(500, 300));
 
@@ -32,6 +32,11 @@ namespace WishList
             listView1.Sorting = SortOrder.Ascending;
 
             var WishList = Wish.GetAllWishes();
+
+            //foreach (var item in WishList)
+            //{
+            //    Console.WriteLine(item.na);
+            //}
             foreach (var item in WishList)
             {
                 ListViewItem tempItem = new ListViewItem(item.Name);
@@ -79,11 +84,14 @@ namespace WishList
 
         private void dodajButton_Click(object sender, EventArgs e)
         {
+            listView1.Clear();
+            LoadListView();
             Form3 form3 = new Form3();
             form3.ShowDialog();
         }
 
-        
+
+
         //todo
         //ogarnac czytanie z xmla
         //ogarnac findwishbyname

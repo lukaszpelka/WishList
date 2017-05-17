@@ -72,6 +72,7 @@
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Wish List";
+
             this.ResumeLayout(false);
 
         }

@@ -38,6 +38,7 @@
             this.priorytetLabel = new System.Windows.Forms.Label();
             this.cenaLabel = new System.Windows.Forms.Label();
             this.trescLabel = new System.Windows.Forms.Label();
+            this.closeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -129,11 +130,22 @@
             this.trescLabel.TabIndex = 6;
             this.trescLabel.Text = "label10";
             // 
+            // closeButton
+            // 
+            this.closeButton.Location = new System.Drawing.Point(313, 275);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
+            this.closeButton.TabIndex = 10;
+            this.closeButton.Text = "Zamknij";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(408, 283);
+            this.ClientSize = new System.Drawing.Size(408, 316);
+            this.Controls.Add(this.closeButton);
             this.Controls.Add(this.dataDodaniaLabel);
             this.Controls.Add(this.priorytetLabel);
             this.Controls.Add(this.cenaLabel);
@@ -163,5 +175,6 @@
         private System.Windows.Forms.Label priorytetLabel;
         private System.Windows.Forms.Label cenaLabel;
         private System.Windows.Forms.Label trescLabel;
+        private System.Windows.Forms.Button closeButton;
     }
 }
